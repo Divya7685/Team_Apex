@@ -42,6 +42,80 @@ function calculateTax(income: number, taxYear = 2024): number {
 }
 calculateTax(10_000);
 
+// Type aliases
+
+type Employee = {
+
+    readonly id: number,
+    name: string,
+    retire: (date: Date) => void
+}
+
+let employee: Employee = {
+    id: 9,
+    name: 'Divya',
+    retire: (date: Date) => {
+        console.log(date);
+    }
+}
+
+// union types
+function kgToLbs(weight: number | string): number {
+    // narrowing
+    if (typeof weight === 'number')
+        return weight * 2.2;
+    else return parseInt(weight) * 2.2;
+
+}
+
+kgToLbs(10);
+kgToLbs('10kg');
+
+// intersection type
+type Draggable = {
+    drag: () => void
+};
+type Resizable = {
+    resize: () => void
+};
+type UIWidget = Draggable & Resizable;
+let textBox: UIWidget = {
+    drag: () => { },
+    resize: () => { }
+}
 
 
+// literal type(exact,specific)
+let quantity1: 50 | 100 = 50;
+type Quantity = 50 | 100;
+let quantity: Quantity = 100;
 
+type Metric = 'cm' | 'inch';
+
+//Nullable type
+function greet(name: string | null) {
+    if (name)
+        console.log(name.toUpperCase());
+    else
+        console.log('Hello!');
+}
+greet(null);
+
+// optional chaining
+type Customer = {
+    birthday?: Date
+};
+
+function getCustomer(id: number): Customer | null | undefined {
+    return id === 0 ? null : { birthday: new Date() };
+}
+let customer = getCustomer(1);
+console.log(customer);
+//optional property access operator
+console.log(customer?.birthday?.getFullYear());
+// optional ele access operator
+
+let log: any = null;
+log('a')
+
+// only if log is referencing an actual fun otherwise we will get undefined
