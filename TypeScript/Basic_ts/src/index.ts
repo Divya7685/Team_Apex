@@ -115,7 +115,7 @@ console.log(customer);
 console.log(customer?.birthday?.getFullYear());
 // optional ele access operator
 
-let log: any = null;
-log('a')
+// let log: any = null;
+// log('a')
 
 // only if log is referencing an actual fun otherwise we will get undefined

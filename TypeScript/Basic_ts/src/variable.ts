@@ -25,5 +25,3 @@ userId.toFixed()
 // // Hero = getHero()
 
 
-
-export {}
