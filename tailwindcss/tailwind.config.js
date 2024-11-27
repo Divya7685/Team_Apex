@@ -8,7 +8,7 @@ export default {
     
     extend: {
       colors:{
-        "light blue":"#DBEAFE",
+        "twitter-blue":"#1DA1F2",
       },
     },
   },
