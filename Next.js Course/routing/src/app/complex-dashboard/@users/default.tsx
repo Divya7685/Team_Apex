@@ -1,4 +1,4 @@
 import Card from "@/components/card";
-export default function UsersAnalytics(){
+export default function DefaultUsersAnalytics(){
     return <Card>users analytics</Card>;
 }

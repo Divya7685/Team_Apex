@@ -11,7 +11,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div>
-      <div>{children}</div>complex-dasboard/@children/page.tsx
+      <div>{children}</div>
       <div style={{ display: "flex" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div>{users}</div>
