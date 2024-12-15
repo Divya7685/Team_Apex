@@ -1,5 +1,5 @@
 import Image from "next/image";
-import wondersImage ,{WonderImage} from "../wonders";
+import wondersImage ,{WonderImage} from "../season";
 
 export default function PhotoPage({
     params :{id},

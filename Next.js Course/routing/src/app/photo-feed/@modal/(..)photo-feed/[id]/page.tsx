@@ -1,5 +1,5 @@
 import Image from "next/image";
-import seasonsImages, { SeasonImage } from "../../../wonders";
+import seasonsImages, { SeasonImage } from "../../../season";
 import Modal from "@/components/modal";
 
 export default function PhotoModal({
