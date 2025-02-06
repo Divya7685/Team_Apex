@@ -69,10 +69,10 @@ const Transaction: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Expense Tracker</h1>
-      <p>Balance: ${balance.toFixed(2)}</p>
-      <p>Income: ${income.toFixed(2)}</p>
+    <div className="h-100 w-10">
+      <h1 className="h-60 w-20 text-center text-blue-800">Expense Tracker</h1>
+      <p className="h-60 w-20 text-center text-blue-800">Balance: ${balance.toFixed(2)}</p>
+      <p className="h-60 w-20 text-center text-blue-800" >Income: ${income.toFixed(2)}</p>
       <p>Expense: ${expense.toFixed(2)}</p>
 
       {/* Button to show the Add Transaction form */}
