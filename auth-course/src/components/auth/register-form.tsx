@@ -1,11 +1,13 @@
 "use client";
 import * as z from "zod"
 import { startTransition, useTransition, useState } from "react";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema } from "@/schemas";
-import { Input } from "../ui/input";
 
+import { RegisterSchema } from "@/schemas";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import {
     Form,
     FormControl,
@@ -16,42 +18,39 @@ import {
 } from '@/components/ui/form'
 
 import { CardWrapper } from "./card-wrapper"
-import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
-import { login } from "@/actions/login";
+import { register } from "@/actions/register";
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
     const [isPending, setTransition] = useTransition();
-    const form = useForm<z.infer<typeof LoginSchema>>({
-        resolver: zodResolver(LoginSchema),
+    const form = useForm<z.infer<typeof RegisterSchema>>({
+        resolver: zodResolver(RegisterSchema),
         defaultValues: {
             email: "",
             password: "",
+            name: "",
         },
     });
 
-    const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
         setError("");
         setSuccess("");
-
         startTransition(() => {
-            login(values)
+            register(values)
                 .then((data) => {
                     setError(data.error);
                     setSuccess(data.success);
                 })
         });
     }
-
-
     return (
         <CardWrapper
-            headerLabel="Welcome Back"
-            backButtonLabel="Dont have an account?"
-            backButtonHref='/auth/register'
+            headerLabel="Create an account"
+            backButtonLabel="Already have an account?"
+            backButtonHref='/auth/login'
             showSocial>
             <Form {...form}>
                 <form
@@ -60,14 +59,31 @@ export const LoginForm = () => {
                     <div className="space-y-6">
                         <FormField
                             control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Name</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            placeholder="name"
+                                            type="name"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )} />
+                        <FormField
+                            control={form.control}
                             name="email"
                             render={({ field }) => (
+
                                 <FormItem>
                                     <FormLabel> Email</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
-                                            placeholder="divya@gmail.com"
+                                            placeholder="example@gmail.com"
                                             type="email"
                                         />
                                     </FormControl>
@@ -94,7 +110,7 @@ export const LoginForm = () => {
                     <FormError message="" />
                     <FormSuccess message="" />
                     <Button type="submit" className="w-full">
-                        Login
+                        Register
                     </Button>
                 </form>
 
